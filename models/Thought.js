@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create a course model
-const courseSchema = new Schema(
+// Schema to create a thought model
+const thoughtSchema = new Schema(
   {
     courseName: {
       type: String,
@@ -35,6 +35,6 @@ const courseSchema = new Schema(
   }
 );
 
-const Course = model('course', courseSchema);
+const Thought = model('thought', thoughtSchema);
 
-module.exports = Course;
+module.exports = Thought;
