@@ -1,30 +1,46 @@
 const { Schema, model } = require('mongoose');
 
+const reactionSchema = new Schema(
+  {
+  reactionId: {
+    type: Schema.Types.ObjectId,
+    dedfault: new Schema.Types.ObjectId
+  },
+  reactionBody: {
+    type: String,
+    required: true,
+    maxlength: 280
+  },
+  username: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  }
+})
+
 // Schema to create a thought model
 const thoughtSchema = new Schema(
   {
-    courseName: {
+    thoughtText: {
+      type: String,
+      required: true,
+      maxlength: 280
+    },
+    createdAt: {
+      type: Date,
+      // Sets a default value to now
+      default: Date.now(),
+    },
+    username: {
       type: String,
       required: true,
     },
-    inPerson: {
-      type: Boolean,
-      default: true,
-    },
-    startDate: {
-      type: Date,
-      default: Date.now(),
-    },
-    endDate: {
-      type: Date,
-      // Sets a default value of 12 weeks from now
-      default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
-    },
-    students: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Student',
-      },
+    
+    reactions: [
+      reactionSchema
     ],
   },
   {
@@ -36,5 +52,7 @@ const thoughtSchema = new Schema(
 );
 
 const Thought = model('thought', thoughtSchema);
+//Dont need to export it as a model
+// const Reaction = model('reaction', reactionSchema);
 
-module.exports = Thought;
+module.exports = Thought, Reaction;
