@@ -4,7 +4,7 @@ const reactionSchema = new Schema(
   {
   reactionId: {
     type: Schema.Types.ObjectId,
-    dedfault: new Schema.Types.ObjectId
+    default: new Schema.Types.ObjectId
   },
   reactionBody: {
     type: String,
@@ -55,4 +55,4 @@ const Thought = model('thought', thoughtSchema);
 //Dont need to export it as a model
 // const Reaction = model('reaction', reactionSchema);
 
-module.exports = Thought, Reaction;
+module.exports = Thought;

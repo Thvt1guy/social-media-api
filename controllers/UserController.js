@@ -57,39 +57,4 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-
-  // Add a thought to a user
-  addThought(req, res) {
-    console.log('You are adding a thought');
-    console.log(req.body);
-    User.findOneAndUpdate(
-      { _id: req.params.thoughtId },
-      { $addToSet: { thoughts: req.body } },
-      { runValidators: true, new: true }
-    )
-      .then((user) =>
-        !user
-          ? res
-              .status(404)
-              .json({ message: 'No user found with that ID :(' })
-          : res.json(user)
-      )
-      .catch((err) => res.status(500).json(err));
-  },
-  // Remove thought from a user
-  removeThought(req, res) {
-    User.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $pull: { thoughts: { thoughtId: req.params.thoughtId } } },
-      { runValidators: true, new: true }
-    )
-      .then((user) =>
-        !user
-          ? res
-              .status(404)
-              .json({ message: 'No user found with that ID :(' })
-          : res.json(student)
-      )
-      .catch((err) => res.status(500).json(err));
-  },
 };
